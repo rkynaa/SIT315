@@ -1,10 +1,10 @@
 // C++ code
 //
-const int pirPin = 2;      // PIR Pin
-const int echoPin = 13;    // Ultrasonic Echo Pin
-const int trigPin = 12;    // Ultrasonic Trigger Pin
-const int ledRedPin = 7;   // LED RED Pin
-const int ledGreenPin = 6; // LED GREEN Pin
+const byte pirPin = 2;
+const byte echoPin = 13;    // Ultrasonic Echo Pin
+const byte trigPin = A0;    // Ultrasonic Trigger Pin
+const byte ledRedPin = 7;   // LED RED Pin
+const byte ledGreenPin = 6; // LED GREEN Pin
 volatile byte ledState = HIGH;
 volatile byte pirState = LOW;
 
@@ -16,7 +16,7 @@ void setup()
     pinMode(echoPin, INPUT);       // Set the pin for echo
     pinMode(ledRedPin, OUTPUT);    // Set the pin for LED RED
     pinMode(ledGreenPin, OUTPUT);  // Set the pin for LED GREEN
-    attachInterrupt(digitalPinToInterrupt(pirPin), turnLED, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(pirPin), turnLED, RISING);
 }
 
 void loop()
@@ -47,7 +47,7 @@ void loop()
 void turnLED()
 {
     ledState = !ledState;
-    Serial.print("Interrupted!");
+    Serial.print("Motion Detected! Interrupted!");
     Serial.println();
-    delay(3000);
+    delay(2000);
 }
