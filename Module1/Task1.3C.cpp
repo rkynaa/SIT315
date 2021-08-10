@@ -23,28 +23,26 @@ void setup()
 void loop()
 {
     // Detecting motion to trigger interruption
-    pirStateRed = digitalRead(pirPin1);
-    pirStateGreen = digitalRead(pirPin2);
 
     Serial.print("No motion. . . .");
     Serial.println();
-    digitalWrite(ledRedPin, ledRedState);
-    digitalWrite(ledGreenPin, ledGreenState);
     delay(500);
 }
 
 void turnLEDRed()
 {
     ledRedState = !ledRedState;
+    digitalWrite(ledRedPin, ledRedState);
     Serial.print("Motion Detected! RED LED!");
     Serial.println();
-    delay(2000);
+    delay(1000);
 }
 
 void turnLEDGreen()
 {
     ledGreenState = !ledGreenState;
+    digitalWrite(ledGreenPin, ledGreenState);
     Serial.print("Motion Detected! GREEN LED!");
     Serial.println();
-    delay(2000);
+    delay(1000);
 }
