@@ -3,7 +3,7 @@
 #include <time.h>
 #include <chrono>
 #include <omp.h>
-#define THREAD_NUM 3
+#define THREAD_NUM 20
 
 using namespace std::chrono;
 using namespace std;
@@ -23,13 +23,7 @@ void randomArr(int **arr, int size)
 
 int main()
 {
-    // size = 10
-    // unsigned long size = 10;
-
-    // size = 100
-    // unsigned long size = 100;
-
-    // size = 1000
+    // size
     unsigned long size = 1000;
 
     int total = 0;

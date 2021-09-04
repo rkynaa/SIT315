@@ -3,9 +3,9 @@
 #include <time.h>
 #include <pthread.h>
 #include <chrono>
-#define NUM_THREADS 20
+#define NUM_THREADS 10
 
-#define MAX_NUMBERS 1000
+#define MAX_NUMBERS 100
 
 using namespace std::chrono;
 using namespace std;
@@ -26,13 +26,12 @@ void randomArr(int arr[][MAX_NUMBERS], int size)
     }
 }
 
-void *matMultiply(void *arg)
+void matMultiply(void *arg)
 {
     int i = step_mult++;
-    for (int j = 0; j < MAX_NUMBERS; ++j)
+    for (int j = 0; j < MAX_NUMBERS; j++)
     {
-        matrix3[i][j] = 0;
-        for (int k = 0; k < MAX_NUMBERS; ++k)
+        for (int k = 0; k < MAX_NUMBERS; k++)
         {
             matrix3[i][j] += matrix1[i][k] * matrix2[k][j];
         }
@@ -56,20 +55,20 @@ int main()
     auto start = high_resolution_clock::now();
 
     randomArr(matrix1, MAX_NUMBERS);
-    randomArr(matrix2, MAX_NUMBERS);
+    // randomArr(matrix2, MAX_NUMBERS);
 
-    pthread_t threads[NUM_THREADS];
+    // pthread_t threads[NUM_THREADS];
 
-    for (int i = 0; i < NUM_THREADS; i++)
-    {
-        int *point;
-        pthread_create(&threads[i], NULL, matMultiply, (void *)(point));
-    }
+    // for (int i = 0; i < NUM_THREADS; i++)
+    // {
+    //     int *point;
+    //     pthread_create(&threads[i], NULL, matMultiply, (void *)(point));
+    // }
 
-    for (int i = 0; i < NUM_THREADS; i++)
-    {
-        pthread_join(threads[i], NULL);
-    }
+    // for (int i = 0; i < NUM_THREADS; i++)
+    // {
+    //     pthread_join(threads[i], NULL);
+    // }
 
     //pthread_join(matMultThread, NULL);
 

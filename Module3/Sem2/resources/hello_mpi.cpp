@@ -1,11 +1,15 @@
 #include <mpi.h>
 #include <stdio.h>
+#include <string>
 
-int main(int argc, char** argv) {
-    int numtasks, rank, name_len, tag=1; 
+using namespace std;
+
+int main(int argc, char **argv)
+{
+    int numtasks, rank, name_len, tag = 1;
     char name[MPI_MAX_PROCESSOR_NAME];
     // Initialize the MPI environment
-    MPI_Init(&argc,&argv);
+    MPI_Init(&argc, &argv);
 
     // Get the number of tasks/process
     MPI_Comm_size(MPI_COMM_WORLD, &numtasks);

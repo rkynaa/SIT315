@@ -27,7 +27,7 @@ int main()
     // unsigned long size = 100;
 
     // size = 1000
-    unsigned long size = 3000;
+    unsigned long size = 2000;
 
     srand(time(0));
 
