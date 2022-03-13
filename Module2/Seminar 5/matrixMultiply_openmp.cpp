@@ -3,7 +3,7 @@
 #include <time.h>
 #include <chrono>
 #include <omp.h>
-#define THREAD_NUM 20
+#define THREAD_NUM 3
 
 using namespace std::chrono;
 using namespace std;
@@ -50,17 +50,26 @@ int main()
     randomArr(y, size);
 
     //ToDo: calculating the matrix multiplication
-#pragma omp parallel for reduction(* \
+#pragma omp parallel for reduction(+ \
                                    : total)
     for (int i = 0; i < size; i++)
     {
         for (int j = 0; j < size; j++)
         {
+            z[i][j] = 0;
             for (int k = 0; k < size; k++)
             {
                 total = x[i][k] * y[k][j];
                 z[i][j] += total;
+                // if (i < 1 && j < 5 && k < 5)
+                // {
+                //     printf("%d ", z[i][j]);
+                // }
             }
+            // if (i < 1 && j < 5)
+            // {
+            //     printf("\n");
+            // }
         }
     }
 

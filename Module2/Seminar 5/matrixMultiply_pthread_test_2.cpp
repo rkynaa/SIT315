@@ -1,33 +1,23 @@
+// CPP Program to multiply two matrix using pthreads
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
 #include <pthread.h>
 #include <chrono>
+using namespace std::chrono;
+using namespace std;
 
 // maximum size of matrix
-#define MAX 100
+#define MAX 300
 
 // maximum number of threads
 #define MAX_THREAD 5
-
-using namespace std::chrono;
-using namespace std;
 
 int matA[MAX][MAX];
 int matB[MAX][MAX];
 int matC[MAX][MAX];
 int step_i = 0;
 
-void randomArr(int arr[][MAX], int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            arr[i][j] = rand() % 100;
-        }
-    }
-}
 
 void *multi(void *arg)
 {
@@ -38,16 +28,23 @@ void *multi(void *arg)
             matC[i][j] += matA[i][k] * matB[k][j];
 }
 
+// Driver Code
 int main()
 {
-
     srand(time(0));
 
     //ToDo: Returns a time point representing the starting point in time.
     auto start = high_resolution_clock::now();
 
-    randomArr(matA, MAX);
-    randomArr(matB, MAX);
+    // Generating random values in matA and matB
+    for (int i = 0; i < MAX; i++)
+    {
+        for (int j = 0; j < MAX; j++)
+        {
+            matA[i][j] = rand() % 10;
+            matB[i][j] = rand() % 10;
+        }
+    }
 
     // declaring four threads
     pthread_t threads[MAX_THREAD];
@@ -62,23 +59,6 @@ int main()
     // joining and waiting for all threads to complete
     for (int i = 0; i < MAX_THREAD; i++)
         pthread_join(threads[i], NULL);
-
-    for (int i = 0; i < MAX; i++)
-    {
-        for (int j = 0; i < MAX; i++)
-        {
-            // if (j != 5)
-            // {
-            printf("%d ", matC[i][j]);
-            // }
-        }
-        if (i != 5)
-        {
-            printf("\n");
-        }
-    }
-
-    //pthread_join(matMultThread, NULL);
 
     auto stop = high_resolution_clock::now();
 

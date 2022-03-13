@@ -1,0 +1,25 @@
+Create binary file with command : ./oclc matrix_multiplication 
+                                  ./matrix_multiplication
+
+Data For graph BLOCK_SIZE vs Execution_Time(msec) :
+
+BLOCK SIZE	Execution_Time(msec)
+1	        0.118816
+2		0.056416
+4		0.041888
+8		0.038528
+10		0.039552
+20		0.039168
+
+  Please Find attached graph Plot1.jpeg file and Plot1_all.xlsx.
+
+  File List : 
+
+  1) matrix_multiplication 
+  2) matrix_multiplication.cl 
+  3) matrix_multiplication.cpp 
+  4) oclc 
+  5) Plot1_all.xlsx 
+  6) Plot1.jpeg 
+  7) README
+
